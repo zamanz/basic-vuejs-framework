@@ -1,2 +1,0 @@
-# VueJsFrameworkBasic
-VueJs Framework Basic

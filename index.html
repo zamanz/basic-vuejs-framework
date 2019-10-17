@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container mt-5" id="app">
+    	<div class="row">
+    		<div class="col-sm-8 offset-sm-2">
+    			<div class="card">
+    				<div class="card-header">
+    					<h3>Learn JavaScript framework Vue Js</h3>
+    				</div>
+				  	<div class="card-body">
+				    	<div class="loop">
+						  <ol>
+						    <li v-for="todo in todos">
+						      {{ todo.text }}
+						    </li>
+						  </ol>
+						</div>
+						<input type="text" v-model="name" class="form-control">
+						<hr>
+						<button v-on:click="reverseMessage" class="btn btn-success">
+						{{name}}</button>
+				  	</div>
+				</div>
+    		</div>
+    	</div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script type="text/javascript">
+    	var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!',
+				name: 'Hello Vue!',
+				todos:[
+					{text: "This is first Text"},
+					{text: "This is Second Text"},
+					{text: "This is Threed Text"},
+				]
+			},
+			methods: {
+			    reverseMessage: function () {
+			      this.name = this.name.split('').reverse().join('')
+			    }
+			},
+		});
+    </script>
+  </body>
+</html>
