@@ -20,16 +20,32 @@
     				</div>
 				  	<div class="card-body">
 				    	<div class="loop">
-						  <ol>
-						    <li v-for="todo in todos">
-						      {{ todo.text }}
-						    </li>
-						  </ol>
+				    		<table class="table table-bordered">
+				    			<tr>
+				    				<th>Item</th>
+				    				<th>Price</th>
+				    				<th>Action</th>
+				    			</tr>
+				    			<tr v-for="(item,index) in items" :key="item.index">
+				    				<td>{{ item.product }}</td>
+				    				<td>{{item.price}}</td>
+				    				<td><button v-on:click="remove(index)" class="btn btn-danger">Remove</button></td>
+				    			</tr>
+				    		</table>
 						</div>
 						<input type="text" v-model="name" class="form-control">
 						<hr>
 						<button v-on:click="reverseMessage" class="btn btn-success">
 						{{name}}</button>
+						<hr>
+						<form @submit.prevent="addItem">
+							{{error}}
+							<div class="input-group">
+								<input type="text" v-model="product" class="form-control">
+								<input type="text" v-model="price" class="form-control">
+								<button v-on:click="ItemSubmit">Submit</button>
+							</div>
+						</form>
 				  	</div>
 				</div>
     		</div>
@@ -49,15 +65,32 @@
 			data: {
 				message: 'Hello Vue!',
 				name: 'Hello Vue!',
-				todos:[
-					{text: "This is first Text"},
-					{text: "This is Second Text"},
-					{text: "This is Threed Text"},
-				]
+				items:[
+					
+				],
+				error:'',
+				product: '',
+				price: '',
 			},
+
 			methods: {
 			    reverseMessage: function () {
 			      this.name = this.name.split('').reverse().join('')
+			    },
+
+			    ItemSubmit: function(){
+			    	if(this.product){
+				    	this.items.push({
+				    		product: this.product,
+				    		price: this.price,
+				    	})
+			    	}
+			    	else{
+			    		this.error = "Please type Product Name"
+			    	}
+			    },
+			    remove: function(index){
+			    	this.items.splice(index,1)
 			    }
 			},
 		});
